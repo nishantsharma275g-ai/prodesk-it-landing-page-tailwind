@@ -18,11 +18,8 @@ A responsive digital marketing landing page built using HTML, CSS and JavaScript
 ## Technologies Used
 
 - HTML5
-- CSS3
+- CSS tailwind
 - JavaScript
-- Flexbox
-- CSS Grid
-
 
 ## Author
 
