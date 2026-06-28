@@ -2,64 +2,59 @@
 // Select Elements
 // ==============================
 
-const hamburger = document.querySelector(".hamburger");
-const navLinks = document.querySelector(".nav-links");
+const menuBtn = document.getElementById("menuBtn");
+const mobileMenu = document.getElementById("mobileMenu");
+const closeMenu = document.getElementById("closeMenu");
 const themeToggle = document.getElementById("theme-toggle");
 
 // ==============================
 // Mobile Menu Toggle
 // ==============================
 
-hamburger.addEventListener("click", () => {
-    navLinks.classList.toggle("active");
+menuBtn.addEventListener("click", () => {
+    mobileMenu.style.right = "0";
+});
+
+closeMenu.addEventListener("click", () => {
+    mobileMenu.style.right = "-100%";
 });
 
 // ==============================
 // Dark Mode
 // ==============================
 
-const icon = themeToggle.querySelector("i");
+const themeBtn = document.getElementById("theme-toggle");
+const html = document.documentElement;
 
-// Load Saved Theme
-if(localStorage.getItem("theme") === "dark"){
-
-    document.body.classList.add("dark-theme");
-
-    icon.classList.remove("fa-moon");
-    icon.classList.add("fa-sun");
-
+// Load saved theme
+if (localStorage.getItem("theme") === "dark") {
+  html.classList.add("dark");
+  themeBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
+} else {
+  themeBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
 }
 
-themeToggle.addEventListener("click",()=>{
+// Toggle theme
+themeBtn.addEventListener("click", () => {
+  html.classList.toggle("dark");
 
-    document.body.classList.toggle("dark-theme");
-
-    if(document.body.classList.contains("dark-theme")){
-
-        icon.classList.remove("fa-moon");
-        icon.classList.add("fa-sun");
-
-        localStorage.setItem("theme","dark");
-
-    }else{
-
-        icon.classList.remove("fa-sun");
-        icon.classList.add("fa-moon");
-
-        localStorage.setItem("theme","light");
-    }
-
+  if (html.classList.contains("dark")) {
+    localStorage.setItem("theme", "dark");
+    themeBtn.innerHTML = '<i class="fa-solid fa-sun"></i>';
+  } else {
+    localStorage.setItem("theme", "light");
+    themeBtn.innerHTML = '<i class="fa-solid fa-moon"></i>';
+  }
 });
-
 // ==============================
 // Close Mobile Menu After Click
 // ==============================
 
-const navItems = document.querySelectorAll(".nav-links a");
+const navItems = document.querySelectorAll("#mobileMenu a");
 
 navItems.forEach(item => {
     item.addEventListener("click", () => {
-        navLinks.classList.remove("active");
+        mobileMenu.style.right = "-100%";
     });
 });
 
